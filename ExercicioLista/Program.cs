@@ -2,33 +2,48 @@
 using System.Collections.Generic;
 using System.Globalization;
 
-namespace ExercicioList
-{
-    class Program
-    {
-        static void Main(string[] args)
-        {
+namespace ExercicioLista {
+    class Program {
+        static void Main(string[] args) {
+            Console.Write("Quantos funcionários você deseja registrar? ");
+            int quantidade = int.Parse(Console.ReadLine());
 
-            Console.Write("How many employees will bee registered? ");
-            int nun = int.Parse(Console.ReadLine());
+            List<Funcionarios> lista = new List<Funcionarios>();
 
-            // List<string> list = new List<string>();
-
-            for (int i = 1; i < nun; i++)
-            {
+            for (int i = 1; i <= quantidade; i++) {
                 Console.WriteLine("Employee #" + i + " :");
-                Console.Write("ID: ");
-                int id = int.Parse(Console.ReadLine());
-                Console.Write("Name: ");
-                string name = Console.ReadLine();
+                Console.Write("Código: ");
+                int codigo = int.Parse(Console.ReadLine());
+                Console.Write("Nome: ");
+                string nome = Console.ReadLine();
                 Console.Write("Salário: ");
                 double salario = int.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
 
-
-                //   List.add(new Func(id, name, salario));
+                lista.Add(new Funcionarios(codigo, nome, salario));
             }
 
-            Console.WriteLine("Updated list of Employees:");
+            Console.Write("Entre com o funcionário que irá receber aumento: ");
+            int procuraCodigo = int.Parse(Console.ReadLine());
+
+            Funcionarios empregado lista.Find(x => x.Codigo == procuraCodigo);
+
+            if (empregado != null) {
+                Console.Write("Entre com a porcentagem: ");
+                double porcentagem = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+                empregado.AumentarSalario(porcentagem);
+            }
+            else {
+                Console.WriteLine("Código Inexistente");
+            }
+            Console.WriteLine("-----------------------");
+            Console.WriteLine("Lista atualizada de funcionários: ");
+
+            foreach (Funcionarios obj in lista) {
+                Console.WriteLine(obj);
+            }
+
+
+
             Console.WriteLine();
 
 
